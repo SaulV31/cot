@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cotizador Web por Porcentajes</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="container">
+    <header>
+      <h1>Cotizador Web (base por hora + ajustes en porcentaje)</h1>
+      <p>
+        Calcula presupuestos según <strong>tipo de sitio</strong>, <strong>cantidad de páginas o secciones</strong>,
+        <strong>tarifa por hora</strong> y <strong>funcionalidades</strong>. El modelo prioriza porcentajes y después traduce
+        el resultado a horas y monto estimado.
+      </p>
+    </header>
+
+    <section class="card grid-2">
+      <div>
+        <label for="siteType">Tipo de proyecto</label>
+        <select id="siteType"></select>
+      </div>
+
+      <div>
+        <label for="billingMode">Estructura del proyecto</label>
+        <select id="billingMode">
+          <option value="multipage">Sitio multipágina</option>
+          <option value="landing">Landing page (por secciones)</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="hourlyRate">Tarifa por hora</label>
+        <select id="hourlyRate"></select>
+      </div>
+
+      <div>
+        <label for="complexity">Complejidad general extra (%)</label>
+        <input id="complexity" type="range" min="0" max="40" step="1" value="0" />
+        <output id="complexityValue">0%</output>
+      </div>
+
+      <div id="pagesField">
+        <label for="pages">Cantidad de páginas</label>
+        <input id="pages" type="number" min="1" value="5" />
+      </div>
+
+      <div id="sectionsField" class="hidden">
+        <label for="sections">Cantidad de secciones del landing</label>
+        <input id="sections" type="number" min="1" value="8" />
+      </div>
+
+      <div>
+        <label for="hoursPerPage">Horas base por página</label>
+        <input id="hoursPerPage" type="number" min="1" step="0.5" value="6" />
+      </div>
+
+      <div>
+        <label for="hoursPerSection">Horas base por sección (landing)</label>
+        <input id="hoursPerSection" type="number" min="0.5" step="0.5" value="2" />
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Funcionalidades (cada una suma porcentaje)</h2>
+      <p>Selecciona todas las que apliquen. Puedes elegir múltiples opciones.</p>
+      <div id="features" class="feature-grid"></div>
+    </section>
+
+    <section class="card">
+      <h2>Resultado</h2>
+      <div class="results grid-2">
+        <div>
+          <h3>Resumen de porcentajes</h3>
+          <ul id="percentBreakdown"></ul>
+        </div>
+        <div>
+          <h3>Estimación final</h3>
+          <ul id="totals"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Referencia de tipos de sitio y porcentajes sugeridos</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Tipo</th>
+              <th>% Base sugerido</th>
+              <th>Páginas sugeridas</th>
+              <th>Secciones sugeridas (landing)</th>
+              <th>Notas</th>
+            </tr>
+          </thead>
+          <tbody id="siteTypeTable"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
